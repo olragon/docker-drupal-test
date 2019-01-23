@@ -28,7 +28,7 @@ SimpleTest:
     - "service nginx start && service php7.0-fpm start"
     - "rm -rf /var/www && pushd /var && drush dl drupal-7.x --drupal-project-rename=www"
     - "popd && cp -r ./ /var/www/sites/all/modules"
-    - "cd /var/www && drush -y si --db-url=\"mysql://root:$MYSQ_ROOT_PASSWORD@mysql:3306/$MYSQL_DATABASE\" --account-name=admin --account-pass=123456 --site-name=\"$CI_PROJECT_NAME $CI_BUILD_REF_NAME\""
+    - "cd /var/www && drush -y si --db-url=\"mysql://root:$MYSQL_ROOT_PASSWORD@mysql:3306/$MYSQL_DATABASE\" --account-name=admin --account-pass=123456 --site-name=\"$CI_PROJECT_NAME $CI_BUILD_REF_NAME\""
     - "drush -y en simpletest restws"
     - "php scripts/run-tests.sh --url http://localhost --concurrency $CPUS_COUNT --verbose --color --class RestWSBatchTestCase,RestWSTestCase"
 ```
